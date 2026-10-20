@@ -1,10 +1,16 @@
 import os
+from datetime import timedelta
 
 from flask import Flask
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get(
     "SECRET_KEY", "lab4-educational-session-key"
+)
+app.config.update(
+    PERMANENT_SESSION_LIFETIME=timedelta(minutes=30),
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE="Lax",
 )
 
 # Import routes only after the Flask instance exists to avoid circular imports.

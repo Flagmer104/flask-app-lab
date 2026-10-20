@@ -27,6 +27,7 @@ class AuthenticationTestCase(unittest.TestCase):
         self.assertTrue(response.location.endswith("/users/profile"))
         with self.client.session_transaction() as user_session:
             self.assertEqual(user_session["username"], "student")
+            self.assertTrue(user_session.permanent)
 
     def test_incorrect_credentials_do_not_authenticate(self):
         response = self.login(password="wrong", follow_redirects=True)

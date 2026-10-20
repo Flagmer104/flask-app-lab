@@ -48,6 +48,7 @@ def login():
 
         if username == DEMO_USERNAME and password == DEMO_PASSWORD:
             session.clear()
+            session.permanent = True
             session["username"] = username
             flash("Вхід виконано успішно. Ласкаво просимо!", "success")
             return redirect(url_for("users.profile"))
