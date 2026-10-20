@@ -1,0 +1,12 @@
+<article class="catalog-card">
+    <div class="catalog-card-top"><span class="catalog-id">0{{ product.id }}</span><span class="stock-dot"><i></i> Навчальний приклад</span></div>
+    <div>
+        <p class="item-kicker">Цифрова техніка</p>
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.content }}</p>
+    </div>
+    <div class="catalog-card-footer">
+        <strong>{{ product.price }} <small>USD</small></strong>
+        <a href="{{ url_for('products.product_detail', product_id=product.id) }}" aria-label="Переглянути деталі продукту {{ product.name }}">Детальніше <span aria-hidden="true">↗</span></a>
+    </div>
+</article>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="product-detail">
+    <div class="container">
+        <a class="detail-back" href="{{ url_for('products.product_list') }}"><span aria-hidden="true">←</span> До каталогу</a>
+        <div class="product-detail-grid">
+            <div class="product-visual" aria-hidden="true"><span>0{{ product.id }}</span><strong>{{ product.name[:1] }}</strong><small>PRODUCT / {{ product.id }}</small></div>
+            <div class="product-content">
+                <p class="eyebrow"><span></span> Деталі продукту</p>
+                <h1>{{ product.name }}</h1>
+                <p class="product-description">{{ product.content }}</p>
+                <div class="product-price"><small>Навчальна ціна</small><strong>{{ product.price }} <span>USD</span></strong></div>
+                <div class="detail-note"><span aria-hidden="true">◎</span><p><strong>Демонстраційні дані.</strong><br>Це навчальна сторінка, а не реальна пропозиція продажу.</p></div>
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}
