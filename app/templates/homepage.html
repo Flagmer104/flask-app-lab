@@ -25,9 +25,9 @@
             <a class="module-card" href="{{ url_for('contacts') }}">
                 <span class="module-index">02</span><div><p class="item-kicker">Основний маршрут</p><h3>Контакти</h3><p>GitHub-профіль і безпечна демонстраційна форма.</p></div><span class="module-arrow" aria-hidden="true">↗</span>
             </a>
-            <article class="module-card module-card-muted">
-                <span class="module-index">03</span><div><p class="item-kicker">Наступний модуль</p><h3>Blueprint-маршрути</h3><p>Ізольовані компоненти з власною логікою та шаблонами.</p></div><span class="module-arrow" aria-hidden="true">→</span>
-            </article>
+            <a class="module-card" href="{{ url_for('users.greetings', name='Vladyslav') }}">
+                <span class="module-index">03</span><div><p class="item-kicker">Users Blueprint</p><h3>Динамічне вітання</h3><p>Ім’я в URL, необов’язковий вік і окреме вертикальне меню.</p></div><span class="module-arrow" aria-hidden="true">↗</span>
+            </a>
         </div>
     </div>
 </section>

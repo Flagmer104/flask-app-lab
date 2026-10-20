@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="blueprint-header">
+    <div class="container">
+        <p class="eyebrow"><span></span> Users Blueprint</p>
+        <p class="route-label">/users/hi/&lt;name&gt;</p>
+        <h1>Вітаю,<br><em>{{ name }}</em><span class="accent-dot">.</span></h1>
+        {% if age is not none %}<p class="blueprint-lead">Вік, переданий через параметр запиту: <strong>{{ age }}</strong></p>
+        {% else %}<p class="blueprint-lead">Додайте параметр <code>?age=30</code>, щоб показати вік.</p>{% endif %}
+    </div>
+</header>
+<section class="blueprint-page">
+    <div class="container"><div class="blueprint-layout">
+        <aside class="vertical-nav" aria-label="Навігація сторінки привітання">
+            <p class="item-kicker">Швидкі переходи</p>
+            <nav>
+                <a href="{{ url_for('users.greetings', name='John', age=30) }}"><span>01</span> Привітати John</a>
+                <a href="{{ url_for('users.greetings', name='Vladyslav') }}"><span>02</span> Привітати Владислава</a>
+                <a href="{{ url_for('users.admin') }}"><span>03</span> Профіль адміністратора</a>
+                <a href="{{ url_for('homepage') }}"><span>04</span> Повернутися на головну</a>
+            </nav>
+        </aside>
+        <article class="blueprint-explainer">
+            <p class="item-kicker">Як це працює</p><h2>Динамічний маршрут</h2>
+            <p>Ім’я надходить із сегмента URL, перетворюється на верхній регістр і безпечно відображається в Jinja2-шаблоні. Вік — необов’язковий query-параметр.</p>
+            <div class="route-example"><span>GET</span><code>{{ request.path }}{% if age is not none %}?age={{ age }}{% endif %}</code></div>
+        </article>
+    </div></div>
+</section>
+{% endblock %}
