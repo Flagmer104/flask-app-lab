@@ -5,13 +5,17 @@
         <div class="collapse navbar-collapse" id="mainNavigation">
             <ul class="navbar-nav ms-auto align-items-lg-center">
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('homepage') }}">Головна</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('users.greetings', name='Vladyslav') }}">Користувачі</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('resume') }}">Резюме</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('contacts') }}">Контакти</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('products.product_list') }}">Продукти</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('resume') }}#about">Про себе</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('resume') }}#education">Освіта</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('resume') }}#skills">Навички</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('resume') }}#projects">Проєкти</a></li>
-                <li class="nav-item ms-lg-2"><a class="btn btn-nav" href="{{ url_for('contacts') }}">Контакти</a></li>
+                {% if session.get('username') %}
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('users.profile') }}">Профіль</a></li>
+                <li class="nav-item ms-lg-2">
+                    <form method="post" action="{{ url_for('users.logout') }}"><button class="btn btn-nav" type="submit">Вийти</button></form>
+                </li>
+                {% else %}
+                <li class="nav-item ms-lg-2"><a class="btn btn-nav" href="{{ url_for('users.login') }}">Увійти</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

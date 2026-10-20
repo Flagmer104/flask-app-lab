@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="auth-page" aria-labelledby="login-title">
+    <div class="container"><div class="auth-layout">
+        <div class="auth-intro">
+            <p class="eyebrow"><span></span> Flask Session</p>
+            <h1>Безпечний вхід.<br><em>Чіткий стан.</em></h1>
+            <p>Навчальна демонстрація об’єкта <code>request</code>, серверної логіки сесії та повідомлень після перенаправлення.</p>
+            <div class="demo-credentials">
+                <p class="item-kicker">Демонстраційні дані</p>
+                <div><span>Користувач</span><code>student</code></div>
+                <div><span>Пароль</span><code>Lab4Demo2026!</code></div>
+            </div>
+        </div>
+        <div class="auth-card">
+            <p class="item-kicker">Авторизація</p>
+            <h2 id="login-title">Увійти до профілю</h2>
+            <p class="auth-card-copy">Використайте навчальний обліковий запис.</p>
+            <form method="post" action="{{ url_for('users.login') }}">
+                <div class="mb-4">
+                    <label class="form-label" for="username">Ім’я користувача</label>
+                    <input class="form-control" id="username" name="username" type="text" autocomplete="username" placeholder="student" required autofocus>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label" for="password">Пароль</label>
+                    <input class="form-control" id="password" name="password" type="password" autocomplete="current-password" placeholder="Введіть пароль" required>
+                </div>
+                <button class="btn btn-primary-custom w-100" type="submit">Увійти <span aria-hidden="true">→</span></button>
+            </form>
+            <p class="auth-privacy"><span aria-hidden="true">◎</span> Дані використовуються лише для локальної навчальної демонстрації.</p>
+        </div>
+    </div></div>
+</section>
+{% endblock %}

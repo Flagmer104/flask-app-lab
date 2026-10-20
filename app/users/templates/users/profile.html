@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="profile-hero">
+    <div class="container"><div class="profile-hero-grid">
+        <div><p class="eyebrow"><span></span> Особистий кабінет</p><h1>Вітаю,<br><em>{{ username }}</em><span class="accent-dot">.</span></h1><p>Стан авторизації збережено у Flask-сесії.</p></div>
+        <div class="profile-status"><span class="status-orbit"><i></i></span><div><small>Статус сесії</small><strong>Авторизовано</strong></div></div>
+    </div></div>
+</header>
+<section class="profile-dashboard">
+    <div class="container">
+        <div class="dashboard-card session-card">
+            <div><p class="item-kicker">Flask Session</p><h2>Активний профіль</h2><p>Ім’я <strong>{{ username }}</strong> отримано безпосередньо із захищеної сесії.</p></div>
+            <form method="post" action="{{ url_for('users.logout') }}"><button class="btn btn-dark-outline" type="submit">Вийти з профілю</button></form>
+        </div>
+    </div>
+</section>
+{% endblock %}

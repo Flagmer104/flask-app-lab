@@ -1,6 +1,11 @@
+import os
+
 from flask import Flask
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = os.environ.get(
+    "SECRET_KEY", "lab4-educational-session-key"
+)
 
 # Import routes only after the Flask instance exists to avoid circular imports.
 from app import views  # noqa: E402, F401

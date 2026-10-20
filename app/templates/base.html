@@ -14,6 +14,25 @@
 <body>
     <a class="skip-link" href="#main-content">Перейти до основного вмісту</a>
     {% include "includes/navbar.html" %}
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        <div class="flash-stack container" aria-live="polite" aria-atomic="true">
+            {% for category, message in messages %}
+                {% set alert_class = {
+                    'success': 'alert-success',
+                    'error': 'alert-danger',
+                    'warning': 'alert-warning',
+                    'info': 'alert-info'
+                }.get(category, 'alert-secondary') %}
+                <div class="alert {{ alert_class }} alert-dismissible fade show" role="alert">
+                    <span class="flash-icon" aria-hidden="true">{% if category == 'success' %}✓{% elif category == 'error' %}!{% elif category == 'warning' %}△{% else %}i{% endif %}</span>
+                    <span>{{ message }}</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрити повідомлення"></button>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
     <main id="main-content">{% block content %}{% endblock %}</main>
     {% include "includes/footer.html" %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
