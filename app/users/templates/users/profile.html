@@ -1,18 +1,57 @@
 {% extends "base.html" %}
 
 {% block content %}
-<header class="profile-hero">
-    <div class="container"><div class="profile-hero-grid">
-        <div><p class="eyebrow"><span></span> Особистий кабінет</p><h1>Вітаю,<br><em>{{ username }}</em><span class="accent-dot">.</span></h1><p>Стан авторизації збережено у Flask-сесії.</p></div>
-        <div class="profile-status"><span class="status-orbit"><i></i></span><div><small>Статус сесії</small><strong>Авторизовано</strong></div></div>
-    </div></div>
-</header>
-<section class="profile-dashboard">
-    <div class="container">
-        <div class="dashboard-card session-card">
-            <div><p class="item-kicker">Flask Session</p><h2>Активний профіль</h2><p>Ім’я <strong>{{ username }}</strong> отримано безпосередньо із захищеної сесії.</p></div>
-            <form method="post" action="{{ url_for('users.logout') }}"><button class="btn btn-dark-outline" type="submit">Вийти з профілю</button></form>
+<div class="profile-page profile-theme-{{ theme }}">
+    <header class="profile-hero">
+        <div class="container"><div class="profile-hero-grid">
+            <div><p class="eyebrow"><span></span> Особистий кабінет</p><h1>Вітаю,<br><em>{{ username }}</em><span class="accent-dot">.</span></h1><p>Керуйте демонстраційними кукі та виглядом сторінки в одному місці.</p></div>
+            <div class="profile-status"><span class="status-orbit"><i></i></span><div><small>Статус сесії</small><strong>Авторизовано</strong></div></div>
+        </div></div>
+    </header>
+
+    <section class="profile-dashboard">
+        <div class="container">
+            <div class="dashboard-card session-card">
+                <div><p class="item-kicker">Flask Session</p><h2>Активний профіль</h2><p>Ім’я <strong>{{ username }}</strong> отримано із захищеної сесії. Автентифікаційний токен ніколи не відображається.</p></div>
+                <form method="post" action="{{ url_for('users.logout') }}"><button class="btn btn-dark-outline" type="submit">Вийти з профілю</button></form>
+            </div>
+
+            <div class="dashboard-grid">
+                <section class="dashboard-card theme-card" aria-labelledby="theme-title">
+                    <p class="item-kicker">Вигляд профілю</p><h2 id="theme-title">Кольорова схема</h2><p>Обрана тема зберігається в окремому кукі та відновлюється після оновлення сторінки.</p>
+                    <div class="theme-switcher" role="group" aria-label="Вибір кольорової схеми">
+                        <form method="post" action="{{ url_for('users.change_theme', theme='light') }}"><button class="theme-option {% if theme == 'light' %}active{% endif %}" type="submit"><span class="theme-swatch light-swatch" aria-hidden="true"></span><span><strong>Світла</strong><small>Чистий світлий простір</small></span>{% if theme == 'light' %}<i aria-hidden="true">✓</i>{% endif %}</button></form>
+                        <form method="post" action="{{ url_for('users.change_theme', theme='dark') }}"><button class="theme-option {% if theme == 'dark' %}active{% endif %}" type="submit"><span class="theme-swatch dark-swatch" aria-hidden="true"></span><span><strong>Темна</strong><small>Контрастний темний режим</small></span>{% if theme == 'dark' %}<i aria-hidden="true">✓</i>{% endif %}</button></form>
+                    </div>
+                </section>
+
+                <section class="dashboard-card cookie-form-card" aria-labelledby="cookie-form-title">
+                    <p class="item-kicker">request.form + response.set_cookie()</p><h2 id="cookie-form-title">Додати кукі</h2><p>Створюються лише кукі з безпечним префіксом <code>lab4_user_</code>.</p>
+                    <form method="post" action="{{ url_for('users.add_cookie') }}">
+                        <div class="row g-4">
+                            <div class="col-md-6"><label class="form-label" for="cookie_key">Ключ</label><input class="form-control" id="cookie_key" name="cookie_key" type="text" maxlength="40" pattern="[A-Za-z0-9_-]+" placeholder="language" required></div>
+                            <div class="col-md-6"><label class="form-label" for="cookie_value">Значення</label><input class="form-control" id="cookie_value" name="cookie_value" type="text" maxlength="200" placeholder="uk" required></div>
+                            <div class="col-12"><label class="form-label" for="cookie_lifetime">Термін дії, секунд</label><input class="form-control" id="cookie_lifetime" name="cookie_lifetime" type="number" min="1" max="31536000" value="3600" required><div class="form-text">Від 1 секунди до 1 року.</div></div>
+                            <div class="col-12"><button class="btn btn-primary-custom" type="submit">Зберегти кукі <span aria-hidden="true">→</span></button></div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+            <section class="dashboard-card cookie-table-card" aria-labelledby="cookies-title">
+                <div class="cookie-table-heading"><div><p class="item-kicker">request.cookies</p><h2 id="cookies-title">Користувацькі кукі</h2></div><span class="cookie-count">{{ managed_cookies|length }} збережено</span></div>
+                {% if managed_cookies %}
+                <div class="table-responsive">
+                    <table class="table cookie-table align-middle"><thead><tr><th scope="col">Ключ</th><th scope="col">Значення</th><th scope="col" class="text-end">Дія</th></tr></thead><tbody>
+                        {% for key, value in managed_cookies %}<tr><td><code>{{ key }}</code></td><td>{{ value }}</td><td class="text-end"><form method="post" action="{{ url_for('users.delete_cookie', key=key) }}"><button class="btn cookie-delete" type="submit" aria-label="Видалити кукі {{ key }}">Видалити</button></form></td></tr>{% endfor %}
+                    </tbody></table>
+                </div>
+                <form method="post" action="{{ url_for('users.delete_all_cookies') }}" class="delete-all-form"><button class="btn btn-dark-outline" type="submit">Видалити всі користувацькі кукі</button><small>Сесія авторизації та тема залишаться недоторканими.</small></form>
+                {% else %}
+                <div class="cookie-empty"><span aria-hidden="true">◎</span><div><strong>Список поки порожній</strong><p>Додайте перше демонстраційне кукі у формі вище.</p></div></div>
+                {% endif %}
+            </section>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 {% endblock %}
