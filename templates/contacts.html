@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="page-header">
+    <div class="container">
+        <p class="eyebrow"><span></span> Будьмо на зв’язку</p>
+        <h1>Контакти<span class="accent-dot">.</span></h1>
+        <p>Відкритий до спілкування про навчальні проєкти, код і нові технології.</p>
+    </div>
+</header>
+<section class="contact-page" aria-labelledby="contact-form-title">
+    <div class="container">
+        <div class="row g-5 g-lg-0">
+            <div class="col-lg-5 contact-details">
+                <p class="item-kicker">Онлайн-профіль</p>
+                <h2>Знайдіть мене<br>на GitHub</h2>
+                <p>Тут можна переглянути мої репозиторії та прогрес у навчанні.</p>
+                <a class="github-link" href="https://github.com/Flagmer104" target="_blank" rel="noopener noreferrer">
+                    <span class="github-icon" aria-hidden="true">GH</span><span><small>github.com</small><strong>Flagmer104</strong></span><span aria-hidden="true">↗</span>
+                </a>
+                <div class="privacy-note"><span aria-hidden="true">◎</span><p><strong>Приватність передусім.</strong><br>Форма не надсилає та не зберігає персональні дані.</p></div>
+            </div>
+            <div class="col-lg-7">
+                <div class="contact-form-card">
+                    {% if form_submitted %}
+                    <div class="alert demo-alert" role="status"><span aria-hidden="true">✓</span><div><strong>Демонстрацію завершено.</strong><br>Повідомлення не було надіслано або збережено.</div></div>
+                    {% endif %}
+                    <p class="item-kicker">Демонстраційна форма</p>
+                    <h2 id="contact-form-title">Напишіть повідомлення</h2>
+                    <p class="form-intro">Заповніть поля, щоб перевірити роботу інтерфейсу.</p>
+                    <form method="post" action="{{ url_for('contacts') }}">
+                        <div class="row g-4">
+                            <div class="col-md-6"><label for="name" class="form-label">Ваше ім’я</label><input type="text" class="form-control" id="name" name="name" placeholder="Наприклад, Олексій" autocomplete="name" required></div>
+                            <div class="col-md-6"><label for="email" class="form-label">Електронна пошта</label><input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" autocomplete="email" required></div>
+                            <div class="col-12"><label for="message" class="form-label">Повідомлення</label><textarea class="form-control" id="message" name="message" rows="6" placeholder="Коротко опишіть тему повідомлення…" required></textarea></div>
+                            <div class="col-12 d-flex flex-column flex-sm-row align-items-sm-center gap-3"><button type="submit" class="btn btn-primary-custom">Перевірити форму <span aria-hidden="true">→</span></button><small class="submit-note">Нічого не надсилається</small></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

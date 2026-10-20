@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="hero">
+    <div class="container"><div class="row align-items-center gy-5">
+        <div class="col-lg-7">
+            <p class="eyebrow"><span></span> Портфоліо · 2026</p>
+            <h1>Проєктую логіку.<br><em>Створюю для людей.</em></h1>
+            <p class="hero-lead">Владислав Харків — студент програмної інженерії, який розвивається у веброзробці, Python та практиках DevOps.</p>
+            <div class="hero-actions d-flex flex-wrap gap-3"><a class="btn btn-primary-custom" href="#projects">Переглянути проєкти <span aria-hidden="true">↘</span></a><a class="btn btn-outline-custom" href="{{ url_for('contacts') }}">Зв’язатися</a></div>
+            <div class="hero-meta" aria-label="Коротка інформація"><div><strong>Фокус</strong><span>Backend &amp; Web</span></div><div><strong>Статус</strong><span class="status"><i></i> Навчаюся</span></div><div><strong>Локація</strong><span>Україна</span></div></div>
+        </div>
+        <div class="col-lg-5"><div class="portrait-wrap"><div class="portrait-glow"></div><img src="{{ url_for('static', filename='images/profile-placeholder.svg') }}" alt="Стилізована ілюстрація з ініціалами VH та елементами програмного коду" class="portrait-image" width="620" height="720"><div class="code-badge" aria-hidden="true"><span>01</span> &lt;build /&gt;</div></div></div>
+    </div></div>
+</header>
+
+<section id="about" class="content-section"><div class="container"><div class="section-grid">
+    <div class="section-heading"><span>01</span><h2>Про себе</h2></div>
+    <div class="section-body about-copy"><p class="lead-copy">Мені цікаво перетворювати складні задачі на зрозумілі та надійні цифрові рішення.</p><div class="row g-4"><div class="col-md-7"><p>Навчаюся програмної інженерії та послідовно розвиваю практичні навички: від структурування Python-коду до створення вебзастосунків на Flask і роботи з Git.</p></div><div class="col-md-5"><p>Ціную чистий код, продуманий інтерфейс і процес, у якому кожне технічне рішення має зрозумілу мету.</p></div></div></div>
+</div></div></section>
+
+<section id="education" class="content-section section-tinted"><div class="container"><div class="section-grid">
+    <div class="section-heading"><span>02</span><h2>Освіта</h2></div>
+    <div class="section-body"><article class="timeline-item"><div class="timeline-marker"></div><div><p class="item-kicker">Теперішній час</p><h3>Програмна інженерія</h3><p>Здобуваю вищу освіту та поглиблюю знання з алгоритмів, проєктування програмного забезпечення, баз даних і вебтехнологій.</p><div class="tag-list"><span>Алгоритми</span><span>ООП</span><span>Бази даних</span><span>Веброзробка</span></div></div></article></div>
+</div></div></section>
+
+<section id="skills" class="content-section"><div class="container"><div class="section-grid">
+    <div class="section-heading"><span>03</span><h2>Навички</h2></div>
+    <div class="section-body"><div class="skills-grid">
+        <article class="skill-card"><span class="skill-number">01</span><h3>Розробка</h3><p>Структурування застосунків, маршрутизація, шаблони та робота з даними.</p></article>
+        <article class="skill-card"><span class="skill-number">02</span><h3>Інтерфейси</h3><p>Семантична верстка, адаптивний дизайн і базові принципи доступності.</p></article>
+        <article class="skill-card"><span class="skill-number">03</span><h3>Інженерний процес</h3><p>Git-гілки, зрозумілі коміти, налагодження та автоматизовані перевірки.</p></article>
+        <article class="skill-card"><span class="skill-number">04</span><h3>Комунікація</h3><p>Декомпозиція задач, документування рішень і готовність до зворотного зв’язку.</p></article>
+    </div></div>
+</div></div></section>
+
+<section id="technologies" class="content-section tech-section"><div class="container"><div class="section-grid">
+    <div class="section-heading"><span>04</span><h2>Технології</h2></div>
+    <div class="section-body"><div class="tech-cloud" aria-label="Перелік технологій"><span class="tech-primary">Python</span><span>Flask</span><span>Jinja2</span><span>HTML5</span><span>CSS3</span><span>Bootstrap</span><span>Git</span><span>GitHub</span><span>SQL</span><span>Linux</span><span>Docker · вивчаю</span></div></div>
+</div></div></section>
+
+<section id="projects" class="content-section section-tinted projects-section"><div class="container"><div class="section-grid">
+    <div class="section-heading"><span>05</span><h2>Проєкти</h2><p>Навчальні роботи та приклади напрямів розвитку.</p></div>
+    <div class="section-body"><div class="project-list">
+        <article class="project-card project-featured"><div class="project-index">01</div><div><p class="item-kicker">Навчальний проєкт</p><h3>Персональне портфоліо на Flask</h3><p>Двосторінковий адаптивний сайт із маршрутизацією, наслідуванням Jinja2-шаблонів і повторно використовуваними компонентами.</p><div class="tag-list"><span>Flask</span><span>Jinja2</span><span>Bootstrap 5</span></div></div><span class="project-arrow" aria-hidden="true">↗</span></article>
+        <article class="project-card"><div class="project-index">02</div><div><p class="item-kicker">Ілюстративний приклад</p><h3>Трекер навчальних завдань</h3><p>Концепт вебзастосунку для організації дедлайнів, пріоритетів і прогресу студента.</p><div class="tag-list"><span>Python</span><span>SQL</span><span>REST</span></div></div><span class="project-arrow" aria-hidden="true">↗</span></article>
+        <article class="project-card"><div class="project-index">03</div><div><p class="item-kicker">Ілюстративний приклад</p><h3>Середовище для Flask-застосунку</h3><p>Навчальна конфігурація локального запуску та контейнеризації з акцентом на відтворюваність.</p><div class="tag-list"><span>Docker</span><span>Linux</span><span>DevOps</span></div></div><span class="project-arrow" aria-hidden="true">↗</span></article>
+    </div></div>
+</div></div></section>
+
+<section id="contact" class="contact-cta"><div class="container text-center"><p class="eyebrow justify-content-center"><span></span> Контактна інформація</p><h2>Маєте ідею для<br><em>навчального проєкту?</em></h2><p>Перегляньте мій GitHub або залиште демонстраційне повідомлення.</p><a class="btn btn-primary-custom" href="{{ url_for('contacts') }}">Перейти до контактів <span aria-hidden="true">→</span></a></div></section>
+{% endblock %}
