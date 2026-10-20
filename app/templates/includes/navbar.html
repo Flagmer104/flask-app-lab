@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark" aria-label="Головна навігація">
     <div class="container">
-        <a class="navbar-brand" href="{{ url_for('resume') }}" aria-label="На головну сторінку"><span class="brand-mark" aria-hidden="true">VH</span><span>Владислав Харків</span></a>
+        <a class="navbar-brand" href="{{ url_for('homepage') }}" aria-label="На головну сторінку"><span class="brand-mark" aria-hidden="true">VH</span><span>Владислав Харків</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-controls="mainNavigation" aria-expanded="false" aria-label="Відкрити меню"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="mainNavigation">
             <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('homepage') }}">Головна</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('resume') }}#about">Про себе</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('resume') }}#education">Освіта</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('resume') }}#skills">Навички</a></li>

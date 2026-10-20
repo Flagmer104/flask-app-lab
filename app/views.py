@@ -1,11 +1,16 @@
-from flask import Flask, render_template, request
+from flask import render_template, request
 
-app = Flask(__name__)
+from app import app
 
 
 @app.route("/")
 def resume():
     return render_template("resume.html", page_title="Резюме")
+
+
+@app.route("/homepage")
+def homepage():
+    return render_template("homepage.html", page_title="Головна")
 
 
 @app.route("/contacts", methods=["GET", "POST"])
@@ -16,7 +21,3 @@ def contacts():
         page_title="Контакти",
         form_submitted=form_submitted,
     )
-
-
-if __name__ == "__main__":
-    app.run(debug=True)

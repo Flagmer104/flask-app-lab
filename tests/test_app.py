@@ -39,6 +39,14 @@ class PortfolioRoutesTestCase(unittest.TestCase):
         self.assertIn('name="email"', html)
         self.assertIn('name="message"', html)
 
+    def test_homepage_renders_from_package_structure(self):
+        response = self.client.get("/homepage")
+        html = response.get_data(as_text=True)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("<title>Головна — Владислав Харків</title>", html)
+        self.assertIn("Один застосунок", html)
+
     def test_contact_post_shows_demo_feedback_without_echoing_data(self):
         private_value = "do-not-store-or-display"
         response = self.client.post(

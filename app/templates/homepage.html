@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="module-hero">
+    <div class="container">
+        <p class="eyebrow"><span></span> Лабораторна робота №3</p>
+        <div class="row align-items-end g-5">
+            <div class="col-lg-8">
+                <h1>Один застосунок.<br><em>Чіткі модулі.</em></h1>
+            </div>
+            <div class="col-lg-4">
+                <p class="module-hero-copy">Модульна структура Flask із незалежними Blueprint-компонентами для користувачів і каталогу продуктів.</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="module-overview" aria-labelledby="modules-title">
+    <div class="container">
+        <div class="section-heading module-heading"><span>01</span><h2 id="modules-title">Навігація застосунком</h2></div>
+        <div class="module-cards">
+            <a class="module-card" href="{{ url_for('resume') }}">
+                <span class="module-index">01</span><div><p class="item-kicker">Основний маршрут</p><h3>Резюме</h3><p>Портфоліо, навички, технології та навчальні проєкти.</p></div><span class="module-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="module-card" href="{{ url_for('contacts') }}">
+                <span class="module-index">02</span><div><p class="item-kicker">Основний маршрут</p><h3>Контакти</h3><p>GitHub-профіль і безпечна демонстраційна форма.</p></div><span class="module-arrow" aria-hidden="true">↗</span>
+            </a>
+            <article class="module-card module-card-muted">
+                <span class="module-index">03</span><div><p class="item-kicker">Наступний модуль</p><h3>Blueprint-маршрути</h3><p>Ізольовані компоненти з власною логікою та шаблонами.</p></div><span class="module-arrow" aria-hidden="true">→</span>
+            </article>
+        </div>
+    </div>
+</section>
+{% endblock %}
